@@ -28,8 +28,7 @@ variable "access_policy" {
     secret_permissions      = optional(list(string))
     storage_permissions     = optional(list(string))
   }))
-  default = [{
-  }]
+  default = []
 }
 
 /* double check do valor padrão
@@ -62,7 +61,7 @@ variable "network_acls" {
     ip_rules                   = optional(list(string))
     virtual_network_subnet_ids = optional(list(string))
   })
-  default = {}
+  default = null
 }
 
 /* verificar o padrão
@@ -89,7 +88,7 @@ variable "contact" {
     name  = optional(string)
     phone = optional(string)
   })
-  default = {}
+  default = null
 }
 
 variable "tags" {

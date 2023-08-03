@@ -36,10 +36,15 @@ module "<kv-system-env-001>" {
   azure_ad_groups = ["group id 1","group id 2"]
   tenant_id = "<your tenant id>"
   access_policy = [
-    rule1 = {
+    {
       tenant_id = "<your tenant id>"
       object_id = "<your object>"
       secret_permissions = ["Backup","Delete","Get","List","Purge","Recover","Restore","Set"]
+    },
+    {
+      tenant_id = "<your tenant id>"
+      object_id = "<your object>"
+      key_permissions = ["Backup","Delete","Get","List","Purge","Recover","Restore","Set"]
     }
   ]
   tags = {
