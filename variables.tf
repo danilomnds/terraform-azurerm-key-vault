@@ -31,13 +31,12 @@ variable "access_policy" {
   default = []
 }
 
-/* double check do valor padrão
 variable "enabled_for_deployment" {
   type = bool
   default = false
 }
 
-variable "enabled_for_disk_encryption " {
+variable "enabled_for_disk_encryption" {
   type = bool
   default = false
 }
@@ -52,7 +51,6 @@ variable "enable_rbac_authorization" {
   type = bool
   default = false
 }
-*/
 
 variable "network_acls" {
   type = object({
@@ -64,23 +62,20 @@ variable "network_acls" {
   default = null
 }
 
-/* verificar o padrão
 variable "purge_protection_enabled" {
   type = bool
   default = false
 }
-*/
 
 variable "public_network_access_enabled" {
   type    = bool
   default = true
 }
 
-/* verificar o padrão
 variable "soft_delete_retention_days" {
   type = number
-  default = null
-}*/
+  default = 90
+}
 
 variable "contact" {
   type = object({

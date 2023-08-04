@@ -37,13 +37,15 @@ module "<kv-system-env-001>" {
   tenant_id = "<your tenant id>"
   access_policy = [
     {
+      # all permissions for a group should be in the same block
       tenant_id = "<your tenant id>"
-      object_id = "<your object>"
+      object_id = "<your object 1>"
       secret_permissions = ["Backup","Delete","Get","List","Purge","Recover","Restore","Set"]
+      key_permissions = ["Backup","Delete","Get","List","Purge","Recover","Restore","Set"]
     },
     {
       tenant_id = "<your tenant id>"
-      object_id = "<your object>"
+      object_id = "<your object 2>"
       key_permissions = ["Backup","Delete","Get","List","Purge","Recover","Restore","Set"]
     }
   ]
@@ -70,14 +72,14 @@ output "kv-system-env-001-id" {
 | sku_name | the name of the sku used for this key vault | `string` | n/a | `Yes` |
 | tenant_id | the azure active directory tenant id that should be used for authenticating requests to the key vault | `string` | n/a | `Yes` |
 | access_policy | block as defined below | `list(object(map{}))` | `[{}]` | No |
-| enabled_for_deployment | boolean flag to specify whether azure virtual machines are permitted to retrieve certificates stored as secrets from the key vault | `bool` | `TBD` | No |
-| enabled_for_disk_encryption | boolean flag to specify whether azure disk encryption is permitted to retrieve secrets from the vault and unwrap keys | `bool` | `TBD` | No |
-| enabled_for_template_deployment | boolean flag to specify whether azure resource manager is permitted to retrieve secrets from the key vault | `bool` | `TBD` | No |
-| enable_rbac_authorization | boolean flag to specify whether azure key vault uses role based access control (rbac) for authorization of data actions | `bool` | `TBD` | No |
+| enabled_for_deployment | boolean flag to specify whether azure virtual machines are permitted to retrieve certificates stored as secrets from the key vault | `bool` | `false` | No |
+| enabled_for_disk_encryption | boolean flag to specify whether azure disk encryption is permitted to retrieve secrets from the vault and unwrap keys | `bool` | `false` | No |
+| enabled_for_template_deployment | boolean flag to specify whether azure resource manager is permitted to retrieve secrets from the key vault | `bool` | `false` | No |
+| enable_rbac_authorization | boolean flag to specify whether azure key vault uses role based access control (rbac) for authorization of data actions | `bool` | `false` | No |
 | network_acls | block as defined below | `object(map{})` | `{}` | No |
-| purge_protection_enabled | is purge protection enabled for this key vault | `bool` | `TBD` | No |
+| purge_protection_enabled | is purge protection enabled for this key vault | `bool` | `false` | No |
 | public_network_access_enabled | whether public network access is allowed for this key vault | `bool` | `true` | No |
-| soft_delete_retention_days | the number of days that items should be retained for once soft-deleted | `bool` | `TBD` | No |
+| soft_delete_retention_days | the number of days that items should be retained for once soft-deleted | `number` | `90` | No |
 | contact | block as defined below | `object(map{})` | `{}` | No |
 | tags | tags for the resource | `map(string)` | `{}` | No |
 | azure_ad_groups | list of azure AD groups that will be granted the Application Insights Component Contributor role  | `list` | `[]` | No |

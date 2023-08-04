@@ -16,12 +16,12 @@ resource "azurerm_key_vault" "key_vault" {
       storage_permissions     = lookup(access_policy.value, "storage_permissions", null)
     }
   }
-  #enabled_for_deployment = var.enabled_for_deployment
-  #enabled_for_disk_encryption = var.enabled_for_disk_encryption
-  #enabled_for_template_deployment = var.enabled_for_template_deployment
+  enabled_for_deployment = var.enabled_for_deployment
+  enabled_for_disk_encryption = var.enabled_for_disk_encryption
+  enabled_for_template_deployment = var.enabled_for_template_deployment
   enable_rbac_authorization = var.enable_rbac_authorization
   dynamic "network_acls" {
-    for_each = var.network_acls
+    for_each = var.network_acls != null ? [var.network_acls] : []
     content {
       bypass                     = network_acls.value.bypass
       default_action             = network_acls.value.default_action
@@ -29,11 +29,11 @@ resource "azurerm_key_vault" "key_vault" {
       virtual_network_subnet_ids = lookup(network_acls.value, "virtual_network_subnet_ids", null)
     }
   }
-  #purge_protection_enabled = var.purge_protection_enabled
+  purge_protection_enabled = var.purge_protection_enabled
   public_network_access_enabled = var.public_network_access_enabled
-  #soft_delete_retention_days = var.soft_delete_retention_days
+  soft_delete_retention_days = var.soft_delete_retention_days
   dynamic "contact" {
-    for_each = var.contact
+    for_each = var.contact != null ? [var.contact] : []
     content {
       email = contact.value.email
       name  = lookup(contact.value, "name", null)
@@ -52,7 +52,7 @@ resource "azurerm_role_assignment" "key_vault_reader" {
   depends_on = [azurerm_key_vault.key_vault]
   for_each = {
     for group in var.azure_ad_groups : group => group
-    if var.rbac_scope_rg && var.azure_ad_groups != []
+    if var.azure_ad_groups != []
   }
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Reader"
