@@ -41,7 +41,6 @@ variable "enabled_for_disk_encryption" {
   default = false
 }
 
-
 variable "enabled_for_template_deployment" {
   type = bool
   default = false

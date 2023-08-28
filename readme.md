@@ -9,7 +9,7 @@ Module developed to standardize the Azure Key Vault creation.
 
 | Module Version | Terraform Version | AzureRM Version |
 |----------------|-------------------| --------------- |
-| v1.0.0         | v1.5.4            | 3.67.0          |
+| v1.0.0         | v1.5.6            | 3.71.0          |
 
 ## Specifying a version
 
@@ -66,7 +66,7 @@ output "kv-system-env-001-id" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| name | logic app name | `string` | n/a | `Yes` |
+| name | key vault name | `string` | n/a | `Yes` |
 | location | azure region | `string` | n/a | `Yes` |
 | resource_group_name | resource group name where the resource(s) will be created | `string` | n/a | `Yes` |
 | sku_name | the name of the sku used for this key vault | `string` | n/a | `Yes` |
